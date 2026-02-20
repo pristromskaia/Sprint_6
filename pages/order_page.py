@@ -7,6 +7,7 @@ from locators.order_page_locators import (
     AboutRentLocators,
     OrderLogo,
 )
+from utils.urls import BASE_URL, ORDER_URL
 
 
 class OrderPage(BasePage):
@@ -93,3 +94,7 @@ class OrderPage(BasePage):
     @allure.step('Нажать на логотип "Самокат"')
     def click_on_scooter_logo(self):
         self.click_with_scroll(OrderLogo.SCOOTER_LOGO)
+
+    @allure.step("Открыть форму заказа")
+    def open_order_page(self):
+        self.driver.get(BASE_URL + ORDER_URL)

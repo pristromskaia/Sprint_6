@@ -8,6 +8,7 @@ from utils.urls import BASE_URL, ORDER_URL
 
 
 class TestOrder:
+
     @allure.title("Проверка заказа через верхнюю кнопку Заказать на главной странице")
     @pytest.mark.parametrize("data", ORDER_TEST_DATA)
     def test_order_from_header_button(self, driver, data):
@@ -43,9 +44,9 @@ class TestOrder:
     )
     def test_scooter_logo(self, driver):
         page = OrderPage(driver)
-        driver.get(BASE_URL + ORDER_URL)
+        page.open_order_page()
         page.click_on_scooter_logo()
-        assert BASE_URL in driver.current_url
+        assert page.is_url_contains(BASE_URL)
 
     @allure.title(
         'Проверка перехода на главную страницу "Дзен" при нажатии на логотип Яндекса'
